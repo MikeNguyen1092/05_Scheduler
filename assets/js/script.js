@@ -4,7 +4,7 @@
 
 /* ============= DOM Traversal ============= */
 let saveBtn = $(".saveBtn");
-let currentHr = dayjs().hour();
+let currentHr = 14 //dayjs().hour();
 console.log(currentHr);
  
 
@@ -32,8 +32,20 @@ $(function () {
   // current hour in 24-hour time?
 
   $(".time-block").each(function() {
+
+    // Grab parseInt the id attr to get the hr for that block
     let timeBlock = parseInt($(this).attr('id').split("-")[1]);
-    console.log(timeBlock);
+
+
+    // compare currentHr with the timeBlock to add class
+    if (timeBlock < currentHr) {
+        $(this).addClass('past').removeClass('present future');;
+    } else if (timeBlock == currentHr) {
+        $(this).addClass('present').removeClass('past future');
+    } else {
+        $(this).addClass('future').removeClass('present past')
+    }
+
   }); // End of time-block
 
   //
@@ -47,5 +59,5 @@ $(function () {
   let today = dayjs();
   $("#currentDay").text(today.format('dddd, MMMM D YYYY, h:mm:ss a'))
   }, 1000);
-  
+
 }); // end of main function

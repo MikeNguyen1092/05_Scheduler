@@ -4,14 +4,30 @@ let timeBlock = $(".time-block")
 let textArea = $(".description")
 
 $(function () {
+    let timer;
+  // Display the current date and time in the header of the page.
+  setInterval(function(){
+    let today = dayjs();
+    $("#currentDay").text(today.format('dddd, MMMM D YYYY, h:mm a'))
+    }, 1000);
 
   // Save hr and input to local storage 
-  saveBtn.on("click", function () {
+  saveBtn.on("click", function (event) {
+    event.preventDefault();
     let hourId = $(this).parent().attr('id');
     let userInput = $(this).siblings(".description").val();
 
     // set to local storage, hourID is the 'key' and userInput is the 'value
     localStorage.setItem(hourId, userInput);
+
+    let messageEl = $("<p>").text("The event has been saved to local storage.")
+    $(messageEl).appendTo("#currentDay")
+
+    clearTimeout(timer);
+    timer = setTimeout (function() {
+        messageEl.remove();
+    }, 3000);
+
   }); // end of saveBtn
 
 
@@ -39,18 +55,13 @@ $(function () {
 
     // Grab the user input by looking for the key from the id attr
     let storedInput = localStorage.getItem($(this).attr("id"));
-    console.log(storedInput);
 
+    // Using `this` to to to the right id then `find` the class description, we put the value of storedInput
     if(storedInput){
     $(this).find(".description").val(storedInput);
     }
   });
 
 
-  // Display the current date and time in the header of the page.
-  setInterval(function(){
-  let today = dayjs();
-  $("#currentDay").text(today.format('dddd, MMMM D YYYY, h:mm:ss a'))
-  }, 1000);
 
 }); // end of main function

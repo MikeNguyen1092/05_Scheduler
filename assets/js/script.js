@@ -47,11 +47,11 @@ $(function () {
     });   
     //========== End ==========//
 
-    
+
     //========== Add and Remove classes function ==========//
     timeBlock.each(function () {
         // The current hour using dayjs in 24hr format
-        let currentHr = dayjs().hour();
+        let currentHr = 13 //dayjs().hour();
 
         // Use parseInt to grab the id attr and split it to get the hr(number) for 'this' block
         let timeSlot = parseInt($(this).attr("id").split("-")[1]);

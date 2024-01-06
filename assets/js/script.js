@@ -42,15 +42,10 @@ $(function () {
     console.log(storedInput);
 
     if(storedInput){
-    $(this).textArea.append(storedInput.val());
+    $(this).find(".description").val(storedInput);
     }
   });
 
-
-      // if storedInput is true (it has something stored in it) then
-    //   if (storedInput) {
-    //     $(this).querrySelector(".description").val(storedInput);
-    //   }
 
   // Display the current date and time in the header of the page.
   setInterval(function(){

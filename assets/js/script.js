@@ -3,12 +3,13 @@ let saveBtn = $(".saveBtn");
 let timeBlock = $(".time-block")
 let textArea = $(".description")
 
+
 $(function () {
     let timer;
   // Display the current date and time in the header of the page.
   setInterval(function(){
     let today = dayjs();
-    $("#currentDay").text(today.format('dddd, MMMM D YYYY, h:mm a'))
+    $("#currentDay").text(today.format('dddd, MMMM D YYYY, h:mm:ss a'))
     }, 1000);
 
   // Save hr and input to local storage 
@@ -20,9 +21,11 @@ $(function () {
     // set to local storage, hourID is the 'key' and userInput is the 'value
     localStorage.setItem(hourId, userInput);
 
+    // when saveBtn is clicked a message will append to page after the current day. 
     let messageEl = $("<p>").text("The event has been saved to local storage.")
-    $(messageEl).appendTo("#currentDay")
+    messageEl.insertAfter("#currentDay");
 
+    // message will clear out after 3 seconds
     clearTimeout(timer);
     timer = setTimeout (function() {
         messageEl.remove();

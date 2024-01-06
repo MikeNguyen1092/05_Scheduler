@@ -2,8 +2,10 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 
-/* ========= DOM Traversal ============= */
+/* ============= DOM Traversal ============= */
 let saveBtn = $(".saveBtn");
+let currentHr = dayjs().hour();
+console.log(currentHr);
  
 
 $(function () {
@@ -20,7 +22,7 @@ $(function () {
     let userInput = $(this).siblings(".description").val();
 
     localStorage.setItem(hourId, userInput);
-  });
+  }); // end of saveBtn
 
   //
   // TODO: Add code to apply the past, present, or future class to each time
@@ -28,6 +30,12 @@ $(function () {
   // attribute of each time-block be used to conditionally add or remove the
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
+
+  $(".time-block").each(function() {
+    let timeBlock = parseInt($(this).attr('id').split("-")[1]);
+    console.log(timeBlock);
+  }); // End of time-block
+
   //
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
@@ -39,4 +47,5 @@ $(function () {
   let today = dayjs();
   $("#currentDay").text(today.format('dddd, MMMM D YYYY, h:mm:ss a'))
   }, 1000);
-});
+  
+}); // end of main function

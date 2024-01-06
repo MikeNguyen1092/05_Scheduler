@@ -1,6 +1,7 @@
 /* ============= DOM Traversal ============= */
 let saveBtn = $(".saveBtn");
 let timeBlock = $(".time-block")
+let textArea = $(".description")
 
 $(function () {
 
@@ -32,6 +33,7 @@ $(function () {
     }
   }); // End of Add and Remove classes
 
+
   // Retrieve the user input from local storage
   timeBlock.each(function () {
 
@@ -39,8 +41,16 @@ $(function () {
     let storedInput = localStorage.getItem($(this).attr("id"));
     console.log(storedInput);
 
+    if(storedInput){
+    $(this).textArea.append(storedInput.val());
+    }
   });
 
+
+      // if storedInput is true (it has something stored in it) then
+    //   if (storedInput) {
+    //     $(this).querrySelector(".description").val(storedInput);
+    //   }
 
   // Display the current date and time in the header of the page.
   setInterval(function(){

@@ -22,8 +22,9 @@ $(function () {
     localStorage.setItem(hourId, userInput);
 
     // when saveBtn is clicked a message will append to page after the current day. 
-    let messageEl = $("<p>").text("The event has been saved to local storage.")
-    messageEl.insertAfter("#currentDay");
+    let messageEl = $("<p>").text("The event has been saved to local storage ✅.")
+
+    messageEl.addClass("lead").insertAfter("#currentDay");
 
     // message will clear out after 3 seconds
     clearTimeout(timer);
